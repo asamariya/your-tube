@@ -1,21 +1,26 @@
 import React, { useState, useEffect } from 'react';
+import ls from 'local-storage';
 
 import { Grid } from '@material-ui/core';
 
 import youtube from './api/youtube';
-import { SearchBar, VideoDetails, VideoList } from './components';
+import { SearchBar, FeaturedVideo, VideoList } from './components';
+import FavouriteVideos from './components/FavouriteVideos';
 
 const App = () => {
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [favouriteVideos, setFavouriteVideos] = useState(
+    ls.get('favouriteVideos') || []
+  );
 
   const handleSubmit = async searchTerm => {
+    const API_KEY = process.env.REACT_APP_API_KEY;
     const response = await youtube.get('search', {
       params: {
         part: 'snippet',
         maxResults: 5,
-        // use ENV to store api key elsewhere
-        key: 'AIzaSyB833-_A8slGTcVAvrFLBo421ykIE03zuk',
+        key: API_KEY,
         q: searchTerm
       }
     });
@@ -23,7 +28,11 @@ const App = () => {
     setSelectedVideo(response.data.items[0]);
   };
 
-  useEffect(() => handleSubmit('dogs'), []);
+  useEffect(() => {
+    console.log(process.env.REACT_APP_API_KEY);
+    handleSubmit('dogs');
+    ls.set('favouriteVideos', favouriteVideos);
+  }, [favouriteVideos]);
 
   return (
     <Grid container spacing={10} justify="center">
@@ -33,10 +42,18 @@ const App = () => {
             <SearchBar onFormSubmit={handleSubmit} />
           </Grid>
           <Grid item xs={8}>
-            <VideoDetails video={selectedVideo} />
+            <FeaturedVideo video={selectedVideo} />
           </Grid>
           <Grid item xs={4}>
-            <VideoList videos={videos} onVideoSelect={setSelectedVideo} />
+            <VideoList
+              videos={videos}
+              onVideoSelect={setSelectedVideo}
+              setFavouriteVideos={setFavouriteVideos}
+              favouriteVideos={favouriteVideos}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <FavouriteVideos favouriteVideos={favouriteVideos} />
           </Grid>
         </Grid>
       </Grid>

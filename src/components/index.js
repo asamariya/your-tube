@@ -1,3 +1,3 @@
 export { default as SearchBar } from './SearchBar';
-export { default as VideoDetails } from './VideoDetails';
+export { default as FeaturedVideo } from './FeaturedVideo';
 export { default as VideoList } from './VideoList';
