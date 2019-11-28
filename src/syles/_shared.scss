@@ -1,0 +1,31 @@
+.highlight {
+  padding-bottom: 1em;
+  white-space: nowrap;
+}
+.relative {
+  position: relative;
+}
+.z-2 {
+  z-index: 2;
+}
+
+.highlight:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 50%;
+  width: 100%;
+  z-index: 1;
+}
+.highlight-aqua:before {
+  height: 14px;
+  background-image: url('../assets/zigzag.svg');
+  background-repeat: repeat-x;
+  background-position-y: bottom;
+}
+
+.highlight-pink:before {
+  background-color: #ff00e6;
+  bottom: 10px;
+}

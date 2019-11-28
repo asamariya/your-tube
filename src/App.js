@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import ls from 'local-storage';
 
 import { Grid } from '@material-ui/core';
 
 import youtube from './api/youtube';
-import { SearchBar, FeaturedVideo, VideoList, Logo } from './components';
+import { SearchBar, FeaturedVideo, VideoList, Header } from './components';
 import FavouriteVideos from './components/FavouriteVideos';
 
 const App = () => {
@@ -27,7 +28,7 @@ const App = () => {
     });
     setVideos(response.data.items);
     setSelectedVideo(response.data.items[0]);
-    console.log(response.data.items[0]);
+    // console.log(response.data.items[0]);
   };
 
   useEffect(() => {
@@ -36,10 +37,29 @@ const App = () => {
   }, [favouriteVideos]);
 
   return (
-    <React.Fragment>
-      <Logo />
-      <SearchBar onFormSubmit={handleSubmit} />
-    </React.Fragment>
+    <Router>
+      <React.Fragment>
+        <div className="header">
+          <Header />
+          <Route
+            exact
+            path="/fav-videos"
+            render={() => (
+              <FavouriteVideos
+                favouriteVideos={favouriteVideos}
+                setSelectedVideo={setSelectedVideo}
+              />
+            )}
+          />
+        </div>
+        <SearchBar onFormSubmit={handleSubmit} />
+        {/* <FavouriteVideos
+          favouriteVideos={favouriteVideos}
+          setSelectedVideo={setSelectedVideo}
+        /> */}
+      </React.Fragment>
+    </Router>
+
     // <Grid container spacing={10} justify="center">
     //   <Grid item xs={12}>
     //     <Grid container spacing={10}>

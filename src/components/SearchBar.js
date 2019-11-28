@@ -15,10 +15,10 @@ const SearchBar = ({ onFormSubmit }) => {
   };
 
   return (
-    <div className="container">
+    <div className="container mb-5">
       <div id="search-bar">
         <form onSubmit={handleSubmit}>
-          <i class="fas fa-search fa-2x mr-2"></i>
+          <i className="fas fa-search fa-2x mr-2"></i>
           <input
             type="search"
             className="search-input"

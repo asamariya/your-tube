@@ -2,13 +2,20 @@
 @import './search-bar.scss';
 @import './_variables.scss';
 @import './_animations.scss';
-@import './logo.scss';
+@import './header.scss';
+@import './fav-videos.scss';
+@import './shared.scss';
+@import './video-list.scss';
+@import './video-item.scss';
 
 body {
   background: black;
   font-family: 'Overpass Mono', monospace;
 }
 
+ul {
+  margin-bottom: 0;
+}
 h1 {
   font-weight: 700;
   font-size: 2rem;
