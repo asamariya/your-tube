@@ -1,7 +1,7 @@
 import React from 'react';
 // import Loading from '../assets/loading.svg';
 
-import { Paper, Typography } from '@material-ui/core';
+// import { Paper, Typography } from '@material-ui/core';
 
 const FeaturedVideo = ({ video }) => {
   if (!video) return <div>Loading...</div>;
@@ -9,8 +9,9 @@ const FeaturedVideo = ({ video }) => {
   const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}`;
   return (
     <React.Fragment>
+      <h1 className="sass-test">Sass test</h1>
       {/* <img src={Loading} alt="" /> */}
-      <Paper elevation={6} style={{ height: '70%' }}>
+      {/* <Paper elevation={6} style={{ height: '70%' }}>
         <iframe
           frameBorder="0"
           height="100%"
@@ -28,7 +29,7 @@ const FeaturedVideo = ({ video }) => {
           {video.snippet.channelTitle}
         </Typography>
         <Typography variant="subtitle2">{video.snippet.description}</Typography>
-      </Paper>
+      </Paper> */}
     </React.Fragment>
   );
 };

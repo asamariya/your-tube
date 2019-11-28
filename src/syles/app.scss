@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Overpass+Mono:400,700&display=swap');
+@import './search-bar.scss';
+@import './_variables.scss';
+@import './_animations.scss';
+
+body {
+  background: black;
+  font-family: 'Overpass Mono', monospace;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 2rem;
+  color: $white;
+  // text-shadow: 4px 3px 0 gray;
+}
+
+// tablet
+@media screen and (min-width: 768px) {
+  h1 {
+    font-size: 3rem;
+  }
+}
+
+//desktop
+@media screen and (min-width: 960px) {
+  h1 {
+    font-size: 5rem;
+  }
+}

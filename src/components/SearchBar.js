@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
-import { Paper, TextField } from '@material-ui/core';
-
 const SearchBar = ({ onFormSubmit }) => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [openClass, setOpenClass] = useState(false);
 
   const handleSubmit = e => {
     e.preventDefault();
     onFormSubmit(searchTerm);
+    setOpenClass(false);
   };
 
   const handleChange = e => {
@@ -15,11 +15,19 @@ const SearchBar = ({ onFormSubmit }) => {
   };
 
   return (
-    <Paper elevation={6} style={{ padding: '25px' }}>
-      <form onSubmit={handleSubmit}>
-        <TextField fullWidth label="Search..." onChange={handleChange} />
-      </form>
-    </Paper>
+    <div className="container">
+      <div id="search-bar">
+        <form onSubmit={handleSubmit}>
+          <i class="fas fa-search fa-2x mr-2"></i>
+          <input
+            type="search"
+            className="search-input"
+            placeholder="Search..."
+            onChange={handleChange}
+          />
+        </form>
+      </div>
+    </div>
   );
 };
 

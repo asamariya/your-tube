@@ -4,7 +4,7 @@ import ls from 'local-storage';
 import { Grid } from '@material-ui/core';
 
 import youtube from './api/youtube';
-import { SearchBar, FeaturedVideo, VideoList } from './components';
+import { SearchBar, FeaturedVideo, VideoList, Logo } from './components';
 import FavouriteVideos from './components/FavouriteVideos';
 
 const App = () => {
@@ -21,43 +21,48 @@ const App = () => {
         part: 'snippet',
         maxResults: 5,
         key: API_KEY,
-        q: searchTerm
+        q: searchTerm,
+        type: 'video'
       }
     });
     setVideos(response.data.items);
     setSelectedVideo(response.data.items[0]);
+    console.log(response.data.items[0]);
   };
 
   useEffect(() => {
-    console.log(process.env.REACT_APP_API_KEY);
-    handleSubmit('dogs');
+    // handleSubmit('dogs');
     ls.set('favouriteVideos', favouriteVideos);
   }, [favouriteVideos]);
 
   return (
-    <Grid container spacing={10} justify="center">
-      <Grid item xs={12}>
-        <Grid container spacing={10}>
-          <Grid item xs={12}>
-            <SearchBar onFormSubmit={handleSubmit} />
-          </Grid>
-          <Grid item xs={8}>
-            <FeaturedVideo video={selectedVideo} />
-          </Grid>
-          <Grid item xs={4}>
-            <VideoList
-              videos={videos}
-              onVideoSelect={setSelectedVideo}
-              setFavouriteVideos={setFavouriteVideos}
-              favouriteVideos={favouriteVideos}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <FavouriteVideos favouriteVideos={favouriteVideos} />
-          </Grid>
-        </Grid>
-      </Grid>
-    </Grid>
+    <React.Fragment>
+      <Logo />
+      <SearchBar onFormSubmit={handleSubmit} />
+    </React.Fragment>
+    // <Grid container spacing={10} justify="center">
+    //   <Grid item xs={12}>
+    //     <Grid container spacing={10}>
+    //       <Grid item xs={12}>
+    //         <SearchBar onFormSubmit={handleSubmit} />
+    //       </Grid>
+    //       <Grid item xs={8}>
+    //         <FeaturedVideo video={selectedVideo} />
+    //       </Grid>
+    //       <Grid item xs={4}>
+    //         <VideoList
+    //           videos={videos}
+    //           onVideoSelect={setSelectedVideo}
+    //           setFavouriteVideos={setFavouriteVideos}
+    //           favouriteVideos={favouriteVideos}
+    //         />
+    //       </Grid>
+    //       <Grid item xs={12}>
+    //         <FavouriteVideos favouriteVideos={favouriteVideos} />
+    //       </Grid>
+    //     </Grid>
+    //   </Grid>
+    // </Grid>
   );
 };
 
