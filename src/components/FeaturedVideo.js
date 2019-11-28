@@ -1,4 +1,5 @@
 import React from 'react';
+// import Loading from '../assets/loading.svg';
 
 import { Paper, Typography } from '@material-ui/core';
 
@@ -8,6 +9,7 @@ const FeaturedVideo = ({ video }) => {
   const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}`;
   return (
     <React.Fragment>
+      {/* <img src={Loading} alt="" /> */}
       <Paper elevation={6} style={{ height: '70%' }}>
         <iframe
           frameBorder="0"
@@ -15,6 +17,7 @@ const FeaturedVideo = ({ video }) => {
           width="100%"
           title="Video Player"
           src={videoSrc}
+          allowfullscreen="0"
         />
       </Paper>
       <Paper elevation={6} style={{ padding: '15px' }}>
