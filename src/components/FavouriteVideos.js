@@ -1,12 +1,13 @@
 import React from 'react';
-import VideoItem from './VideoItem';
+import VideoList from './VideoList';
 
-const FavouriteVideos = ({ favouriteVideos, setSelectedVideo }) => {
-  const listOfFavVideos = favouriteVideos.map((video, id) => (
-    <VideoItem key={id} video={video} setSelectedVideo={setSelectedVideo} />
-  ));
+const FavouriteVideos = ({
+  favouriteVideos,
+  setSelectedVideo,
+  setFavouriteVideos
+}) => {
   return (
-    <div className="container fav-videos">
+    <div className="container videos">
       <span className="relative highlight highlight-pink">
         <span className="relative z-2 h2">
           Your Favourite Videos{' '}
@@ -15,7 +16,19 @@ const FavouriteVideos = ({ favouriteVideos, setSelectedVideo }) => {
           </span>
         </span>
       </span>
-      <div className="video-list mt-4">{listOfFavVideos}</div>
+      {favouriteVideos.length < 1 && (
+        <div className="mt-5">
+          <h4>
+            You don't have any favourite videos yet! Start by searching above...
+          </h4>
+        </div>
+      )}
+      <VideoList
+        videos={favouriteVideos}
+        setSelectedVideo={setSelectedVideo}
+        setFavouriteVideos={setFavouriteVideos}
+        favouriteVideos={favouriteVideos}
+      />
     </div>
   );
 };

@@ -1,6 +1,5 @@
-import React from 'react';
-
-import { Grid, Paper, Typography } from '@material-ui/core';
+import React, { useState, useEffect } from 'react';
+import ls from 'local-storage';
 
 const VideoItem = ({
   video,
@@ -8,25 +7,49 @@ const VideoItem = ({
   setFavouriteVideos,
   favouriteVideos
 }) => {
+  const [isFavourite, setIsFavourite] = useState(ls.get('isFavourite') || null);
+  useEffect(() => {
+    ls.set('isFavourite', isFavourite);
+  }, [isFavourite]);
+
   const addFavourite = video => {
     setFavouriteVideos(favouriteVideos => favouriteVideos.concat(video));
+    setIsFavourite(true);
+  };
+
+  const removeFavourite = video => {
+    const removeIndex = favouriteVideos.map(favVideo => {});
+    // setFavouriteVideos(favouriteVideos => favouriteVideos.concat(video));
+    setIsFavourite(false);
   };
 
   return (
-    <div
-      className="video-card d-flex mb-3"
-      onClick={() => setSelectedVideo(video)}
-    >
-      <img
-        src={video.snippet.thumbnails.medium.url}
-        alt="video thumbnail"
-        style={{ marginRight: '20px' }}
-      />
+    <div className="video-card d-flex mb-3">
+      <div
+        className="video-img relative"
+        style={{ backgroundImage: `url(${video.snippet.thumbnails.high.url})` }}
+        onClick={() => setSelectedVideo(video)}
+      >
+        <i className="fas fa-play fa-3x play-icon"></i>
+      </div>
       <div className="video-info">
         <h5>{video.snippet.title}</h5>
-        <p>
-          <small>{video.snippet.channelTitle}</small>
-        </p>
+        <div className="add-fav d-flex justify-content-between pr-2">
+          <p>
+            <small>{video.snippet.channelTitle}</small>
+          </p>
+          {!isFavourite ? (
+            <i
+              className="far fa-heart fav-icon"
+              onClick={() => addFavourite(video)}
+            ></i>
+          ) : (
+            <i
+              className="fas fa-heart fav-icon"
+              onClick={() => removeFavourite(video)}
+            ></i>
+          )}
+        </div>
         <p>{video.snippet.description}</p>
       </div>
     </div>

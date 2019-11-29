@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
+// import { Grid } from '@material-ui/core';
 
 import VideoItem from './VideoItem';
 
@@ -18,11 +18,7 @@ const VideoList = ({
       favouriteVideos={favouriteVideos}
     />
   ));
-  return (
-    <Grid container spacing={10}>
-      {listOfVideos}
-    </Grid>
-  );
+  return <div className="video-list mt-4">{listOfVideos}</div>;
 };
 
 export default VideoList;

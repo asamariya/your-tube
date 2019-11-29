@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 
-const SearchBar = ({ onFormSubmit }) => {
+const SearchBar = ({ onFormSubmit, setRedirect }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [openClass, setOpenClass] = useState(false);
 
   const handleSubmit = e => {
     e.preventDefault();
     onFormSubmit(searchTerm);
-    setOpenClass(false);
+    setRedirect(true);
   };
 
   const handleChange = e => {

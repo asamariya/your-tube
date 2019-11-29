@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import ls from 'local-storage';
 
 import { Grid } from '@material-ui/core';
 
 import youtube from './api/youtube';
-import { SearchBar, FeaturedVideo, VideoList, Header } from './components';
+import {
+  SearchBar,
+  FeaturedVideo,
+  VideoList,
+  Header,
+  Results,
+  Home
+} from './components';
 import FavouriteVideos from './components/FavouriteVideos';
 
 const App = () => {
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [redirect, setRedirect] = useState(false);
   const [favouriteVideos, setFavouriteVideos] = useState(
     ls.get('favouriteVideos') || []
   );
@@ -28,11 +36,12 @@ const App = () => {
     });
     setVideos(response.data.items);
     setSelectedVideo(response.data.items[0]);
+
     // console.log(response.data.items[0]);
   };
 
   useEffect(() => {
-    // handleSubmit('dogs');
+    handleSubmit('dogs');
     ls.set('favouriteVideos', favouriteVideos);
   }, [favouriteVideos]);
 
@@ -41,18 +50,51 @@ const App = () => {
       <React.Fragment>
         <div className="header">
           <Header />
-          <Route
-            exact
-            path="/fav-videos"
-            render={() => (
-              <FavouriteVideos
-                favouriteVideos={favouriteVideos}
-                setSelectedVideo={setSelectedVideo}
-              />
-            )}
-          />
+          <SearchBar onFormSubmit={handleSubmit} setRedirect={setRedirect} />
         </div>
-        <SearchBar onFormSubmit={handleSubmit} />
+
+        {/* Home */}
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <Home
+              videos={videos}
+              setSelectedVideo={setSelectedVideo}
+              setFavouriteVideos={setFavouriteVideos}
+              favouriteVideos={favouriteVideos}
+            />
+          )}
+        />
+
+        {/* Results */}
+        {redirect && <Redirect to="/results" />}
+        <Route
+          exact
+          path="/results"
+          render={() => (
+            <Results
+              videos={videos}
+              setSelectedVideo={setSelectedVideo}
+              setFavouriteVideos={setFavouriteVideos}
+              favouriteVideos={favouriteVideos}
+            />
+          )}
+        />
+
+        {/* Favourite Videos */}
+        <Route
+          exact
+          path="/fav-videos"
+          render={() => (
+            <FavouriteVideos
+              favouriteVideos={favouriteVideos}
+              setSelectedVideo={setSelectedVideo}
+              setFavouriteVideos={setFavouriteVideos}
+            />
+          )}
+        />
+
         {/* <FavouriteVideos
           favouriteVideos={favouriteVideos}
           setSelectedVideo={setSelectedVideo}

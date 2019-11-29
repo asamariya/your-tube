@@ -3,7 +3,7 @@
 @import './_variables.scss';
 @import './_animations.scss';
 @import './header.scss';
-@import './fav-videos.scss';
+@import './videos.scss';
 @import './shared.scss';
 @import './video-list.scss';
 @import './video-item.scss';
@@ -21,6 +21,10 @@ h1 {
   font-size: 2rem;
   color: $white;
   // text-shadow: 4px 3px 0 gray;
+}
+
+h4 {
+  color: $white;
 }
 
 // tablet
