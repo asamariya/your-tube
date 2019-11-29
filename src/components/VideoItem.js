@@ -1,37 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import ls from 'local-storage';
+import React from 'react';
+
+import VideoPlayer from './VideoPlayer';
 
 const VideoItem = ({
   video,
   setSelectedVideo,
   setFavouriteVideos,
-  favouriteVideos
+  favouriteVideos,
+  isFavourite
 }) => {
-  const [isFavourite, setIsFavourite] = useState(ls.get('isFavourite') || null);
-  useEffect(() => {
-    ls.set('isFavourite', isFavourite);
-  }, [isFavourite]);
-
   const addFavourite = video => {
     setFavouriteVideos(favouriteVideos => favouriteVideos.concat(video));
-    setIsFavourite(true);
+    console.log(isFavourite);
   };
-
   const removeFavourite = video => {
-    const removeIndex = favouriteVideos.map(favVideo => {});
-    // setFavouriteVideos(favouriteVideos => favouriteVideos.concat(video));
-    setIsFavourite(false);
+    const videoId = video.id.videoId;
+    setFavouriteVideos(
+      favouriteVideos.filter(vid => vid.id.videoId !== videoId)
+    );
   };
-
   return (
     <div className="video-card d-flex mb-3">
-      <div
-        className="video-img relative"
-        style={{ backgroundImage: `url(${video.snippet.thumbnails.high.url})` }}
-        onClick={() => setSelectedVideo(video)}
-      >
-        <i className="fas fa-play fa-3x play-icon"></i>
-      </div>
+      <a href="#" data-target={`#${video.id.videoId}`}>
+        <div
+          className="video-img relative"
+          style={{
+            backgroundImage: `url(${video.snippet.thumbnails.high.url})`
+          }}
+          // onClick={() => setSelectedVideo(video)}
+        >
+          <i className="fas fa-play fa-3x play-icon"></i>
+        </div>
+      </a>
+      <VideoPlayer video={video} />
       <div className="video-info">
         <h5>{video.snippet.title}</h5>
         <div className="add-fav d-flex justify-content-between pr-2">
@@ -53,7 +54,6 @@ const VideoItem = ({
         <p>{video.snippet.description}</p>
       </div>
     </div>
-
     // <Grid item xs={12}>
     //   <Paper
     //     style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
