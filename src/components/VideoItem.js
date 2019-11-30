@@ -4,7 +4,6 @@ import VideoPlayer from './VideoPlayer';
 
 const VideoItem = ({
   video,
-  setSelectedVideo,
   setFavouriteVideos,
   favouriteVideos,
   isFavourite
@@ -21,6 +20,16 @@ const VideoItem = ({
       favouriteVideos.filter(vid => vid.id.videoId !== videoId)
     );
   };
+
+  const showFavText = () => {
+    const favText = document.querySelector('.fav-text');
+    favText.style.opacity = '1';
+  };
+  const hideFavText = () => {
+    const favText = document.querySelector('.fav-text');
+    favText.style.opacity = '0';
+  };
+
   return (
     <div className="video-card d-flex mb-3">
       <div
@@ -40,20 +49,35 @@ const VideoItem = ({
       />
       <div className="video-info">
         <h5>{video.snippet.title}</h5>
-        <div className="add-fav d-flex justify-content-between pr-2">
-          <p>
+        <div className="add-fav d-flex justify-content-between pr-2 mb-2">
+          <p className="flex-grow-1">
             <small>{video.snippet.channelTitle}</small>
           </p>
           {!isFavourite ? (
-            <i
-              className="far fa-heart fav-icon"
-              onClick={() => addFavourite(video)}
-            ></i>
+            <div className="favourite d-flex align-items-center">
+              <p className="mr-1 fav-text">
+                <small>Add as favourite</small>
+              </p>
+
+              <i
+                className="far fa-heart fav-icon"
+                onClick={() => addFavourite(video)}
+                onMouseEnter={showFavText}
+                onMouseLeave={hideFavText}
+              ></i>
+            </div>
           ) : (
-            <i
-              className="fas fa-heart fav-icon"
-              onClick={() => removeFavourite(video)}
-            ></i>
+            <div className="favourite d-flex align-items-center">
+              <p className="mr-1 fav-text">
+                <small>Remove as favourite</small>
+              </p>
+              <i
+                className="fas fa-heart fav-icon"
+                onClick={() => removeFavourite(video)}
+                onMouseEnter={showFavText}
+                onMouseLeave={hideFavText}
+              ></i>
+            </div>
           )}
         </div>
         <p>{video.snippet.description}</p>

@@ -4,7 +4,7 @@ import ls from 'local-storage';
 import VideoItem from './VideoItem';
 const VideoList = ({
   videos,
-  onVideoSelect,
+
   setFavouriteVideos,
   favouriteVideos
 }) => {
@@ -17,7 +17,6 @@ const VideoList = ({
       <VideoItem
         key={id}
         video={video}
-        onVideoSelect={onVideoSelect}
         setFavouriteVideos={setFavouriteVideos}
         favouriteVideos={favouriteVideos}
         isFavourite={!!isFavourite}

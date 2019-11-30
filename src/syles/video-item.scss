@@ -31,6 +31,17 @@
       color: gray;
     }
     .add-fav {
+      .favourite {
+        p {
+          opacity: 0;
+          transition: opacity 0.5s ease-in-out;
+        }
+        // &:hover {
+        //   p {
+        //     opacity: 1;
+        //   }
+        // }
+      }
       .fav-icon {
         &:hover {
           cursor: pointer;

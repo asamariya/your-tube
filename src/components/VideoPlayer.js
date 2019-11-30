@@ -32,7 +32,7 @@ const VideoPlayer = ({ video, show, onHide }) => {
           width="100%"
           title="Video Player"
           src={videoSrc}
-          allowfullscreen="0"
+          allowFullScreen="0"
         />
       </Modal.Body>
     </Modal>

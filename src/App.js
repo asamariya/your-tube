@@ -3,13 +3,12 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import ls from 'local-storage';
 
 import youtube from './api/youtube';
-import { SearchBar, VideoPlayer, Header, Results, Home } from './components';
+import { SearchBar, Header, Results, Home } from './components';
 import FavouriteVideos from './components/FavouriteVideos';
 
 const App = () => {
   // ls.clear();
   const [videos, setVideos] = useState([]);
-  const [selectedVideo, setSelectedVideo] = useState(null);
   const [redirect, setRedirect] = useState(false);
   const [favouriteVideos, setFavouriteVideos] = useState(
     ls.get('favouriteVideos') || []
@@ -27,8 +26,6 @@ const App = () => {
       }
     });
     setVideos(response.data.items);
-    // setSelectedVideo(response.data.items[0]);
-
     // console.log(response.data.items[0]);
   };
 
@@ -43,6 +40,7 @@ const App = () => {
   return (
     <Router>
       <React.Fragment>
+        {/* Header */}
         <div className="header">
           <Header />
           <SearchBar onFormSubmit={handleSubmit} setRedirect={setRedirect} />
@@ -55,7 +53,6 @@ const App = () => {
           render={() => (
             <Home
               videos={videos}
-              setSelectedVideo={setSelectedVideo}
               setFavouriteVideos={setFavouriteVideos}
               favouriteVideos={favouriteVideos}
             />
@@ -63,14 +60,13 @@ const App = () => {
         />
 
         {/* Results */}
-        {redirect && <Redirect to="/results" />}
+        {videos && redirect && <Redirect to="/results" />}
         <Route
           exact
           path="/results"
           render={() => (
             <Results
               videos={videos}
-              setSelectedVideo={setSelectedVideo}
               setFavouriteVideos={setFavouriteVideos}
               favouriteVideos={favouriteVideos}
             />
@@ -84,42 +80,12 @@ const App = () => {
           render={() => (
             <FavouriteVideos
               favouriteVideos={favouriteVideos}
-              setSelectedVideo={setSelectedVideo}
               setFavouriteVideos={setFavouriteVideos}
             />
           )}
         />
-
-        {/* <FavouriteVideos
-          favouriteVideos={favouriteVideos}
-          setSelectedVideo={setSelectedVideo}
-        /> */}
       </React.Fragment>
     </Router>
-
-    // <Grid container spacing={10} justify="center">
-    //   <Grid item xs={12}>
-    //     <Grid container spacing={10}>
-    //       <Grid item xs={12}>
-    //         <SearchBar onFormSubmit={handleSubmit} />
-    //       </Grid>
-    //       <Grid item xs={8}>
-    //         <FeaturedVideo video={selectedVideo} />
-    //       </Grid>
-    //       <Grid item xs={4}>
-    //         <VideoList
-    //           videos={videos}
-    //           onVideoSelect={setSelectedVideo}
-    //           setFavouriteVideos={setFavouriteVideos}
-    //           favouriteVideos={favouriteVideos}
-    //         />
-    //       </Grid>
-    //       <Grid item xs={12}>
-    //         <FavouriteVideos favouriteVideos={favouriteVideos} />
-    //       </Grid>
-    //     </Grid>
-    //   </Grid>
-    // </Grid>
   );
 };
 

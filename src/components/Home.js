@@ -1,11 +1,6 @@
 import React from 'react';
 import VideoList from './VideoList';
-const Home = ({
-  videos,
-  setSelectedVideo,
-  setFavouriteVideos,
-  favouriteVideos
-}) => {
+const Home = ({ videos, setFavouriteVideos, favouriteVideos }) => {
   return (
     <div className="container videos">
       <span className="relative highlight highlight-pink">
@@ -13,7 +8,6 @@ const Home = ({
       </span>
       <VideoList
         videos={videos}
-        setSelectedVideo={setSelectedVideo}
         setFavouriteVideos={setFavouriteVideos}
         favouriteVideos={favouriteVideos}
       />
