@@ -20,7 +20,7 @@ const App = () => {
     const response = await youtube.get('search', {
       params: {
         part: 'snippet',
-        maxResults: 5,
+        maxResults: 6,
         key: API_KEY,
         q: searchTerm,
         type: 'video'

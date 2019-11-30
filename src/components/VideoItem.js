@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import VideoPlayer from './VideoPlayer';
 
@@ -9,6 +9,8 @@ const VideoItem = ({
   favouriteVideos,
   isFavourite
 }) => {
+  const [modalShow, setModalShow] = useState(false);
+
   const addFavourite = video => {
     setFavouriteVideos(favouriteVideos => favouriteVideos.concat(video));
     console.log(isFavourite);
@@ -21,18 +23,21 @@ const VideoItem = ({
   };
   return (
     <div className="video-card d-flex mb-3">
-      <a href="#" data-target={`#${video.id.videoId}`}>
-        <div
-          className="video-img relative"
-          style={{
-            backgroundImage: `url(${video.snippet.thumbnails.high.url})`
-          }}
-          // onClick={() => setSelectedVideo(video)}
-        >
-          <i className="fas fa-play fa-3x play-icon"></i>
-        </div>
-      </a>
-      <VideoPlayer video={video} />
+      <div
+        className="video-img relative"
+        style={{
+          backgroundImage: `url(${video.snippet.thumbnails.high.url})`
+        }}
+        onClick={() => setModalShow(true)}
+      >
+        <i className="fas fa-play fa-3x play-icon"></i>
+      </div>
+
+      <VideoPlayer
+        video={video}
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
       <div className="video-info">
         <h5>{video.snippet.title}</h5>
         <div className="add-fav d-flex justify-content-between pr-2">

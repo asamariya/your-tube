@@ -1,50 +1,41 @@
 import React from 'react';
+import Modal from 'react-bootstrap/Modal';
+// import Button from 'react-bootstrap/Button';
 // import Loading from '../assets/loading.svg';
 
 // import { Paper, Typography } from '@material-ui/core';
 
-const VideoPlayer = ({ video }) => {
+const VideoPlayer = ({ video, show, onHide }) => {
   if (!video) return <div>Loading...</div>;
 
   const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}`;
   return (
-    <React.Fragment>
-      <div
-        className="modal fade"
-        id={video.id.videoId}
-        tabIndex="-1"
-        role="dialog"
-        aria-labelledby={video.snippet.title}
-        aria-hidden="true"
-      >
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-body">
-              <div className="embed-responsive embed-responsive-16by9">
-                <iframe
-                  frameBorder="0"
-                  height="100%"
-                  width="100%"
-                  title="Video Player"
-                  src={videoSrc}
-                  allowFullScreen="0"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </React.Fragment>
+    <Modal
+      // {...
+      video={video}
+      show={show}
+      onHide={onHide}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+      dialogClassName="modal-100w modal-100h"
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          {video.snippet.title}
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body className="embed-responsive embed-responsive-16by9">
+        <iframe
+          frameBorder="0"
+          height="100%"
+          width="100%"
+          title="Video Player"
+          src={videoSrc}
+          allowfullscreen="0"
+        />
+      </Modal.Body>
+    </Modal>
 
     // {/* <img src={Loading} alt="" /> */}
     // {/* <Paper elevation={6} style={{ height: '70%' }}>
