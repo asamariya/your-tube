@@ -12,7 +12,6 @@ const VideoItem = ({
 
   const addFavourite = video => {
     setFavouriteVideos(favouriteVideos => favouriteVideos.concat(video));
-    console.log(isFavourite);
   };
   const removeFavourite = video => {
     const videoId = video.id.videoId;

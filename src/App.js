@@ -41,11 +41,8 @@ const App = () => {
     <Router>
       <React.Fragment>
         {/* Header */}
-        <div className="header">
-          <Header />
-          <SearchBar onFormSubmit={handleSubmit} setRedirect={setRedirect} />
-        </div>
-
+        <Header />\{/* Search bar */}
+        <SearchBar onFormSubmit={handleSubmit} setRedirect={setRedirect} />
         {/* Home */}
         <Route
           exact
@@ -58,7 +55,6 @@ const App = () => {
             />
           )}
         />
-
         {/* Results */}
         {videos && redirect && <Redirect to="/results" />}
         <Route
@@ -72,7 +68,6 @@ const App = () => {
             />
           )}
         />
-
         {/* Favourite Videos */}
         <Route
           exact
