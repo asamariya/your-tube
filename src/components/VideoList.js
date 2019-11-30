@@ -13,6 +13,7 @@ const VideoList = ({
     const favourites = ls.get('favouriteVideos');
     const isFavourite =
       favourites && favourites.find(vid => vid.id.videoId === video.id.videoId);
+
     return (
       <VideoItem
         key={id}
@@ -23,6 +24,7 @@ const VideoList = ({
       />
     );
   });
+
   return <div className="video-list mt-4">{listOfVideos}</div>;
 };
 export default VideoList;

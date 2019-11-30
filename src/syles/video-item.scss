@@ -4,7 +4,7 @@
   overflow: hidden;
   padding: 4px;
   box-shadow: 0 0 15px rgba(211, 211, 231, 0.295);
-  max-width: 450px;
+  width: 100%;
 
   .video-img {
     min-height: 200px;
@@ -73,7 +73,7 @@
   }
 
   // wide tablet and desktop
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 992px) {
     .video-card {
       max-width: 450px;
     }
@@ -88,7 +88,7 @@
 //extra wide
 @media screen and (min-width: 1200px) {
   .video-card {
-    max-width: 360px;
+    max-width: 540px;
     .video-img {
       .play-icon {
         left: 156px;
