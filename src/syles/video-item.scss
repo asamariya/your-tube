@@ -27,6 +27,9 @@
     }
   }
   .video-info {
+    h5 {
+      font-size: 1em;
+    }
     p {
       color: gray;
     }
@@ -56,19 +59,24 @@
 @media screen and (min-width: 768px) {
   .video-card {
     max-width: 340px;
-    .video-img {
-      .play-icon {
-        top: 70px;
-        left: 150px;
+    .video-info {
+      h5 {
+        font-size: 1.25em;
+      }
+      .video-img {
+        .play-icon {
+          top: 70px;
+          left: 150px;
+        }
       }
     }
   }
-}
 
-// wide tablet and desktop
-@media screen and (min-width: 1024px) {
-  .video-card {
-    max-width: 450px;
+  // wide tablet and desktop
+  @media screen and (min-width: 1024px) {
+    .video-card {
+      max-width: 450px;
+    }
     .video-img {
       .play-icon {
         left: 200px;

@@ -41,7 +41,8 @@ const App = () => {
     <Router>
       <React.Fragment>
         {/* Header */}
-        <Header />\{/* Search bar */}
+        <Header />
+        {/* Search bar */}
         <SearchBar onFormSubmit={handleSubmit} setRedirect={setRedirect} />
         {/* Home */}
         <Route

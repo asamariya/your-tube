@@ -14,7 +14,7 @@ const SearchBar = ({ onFormSubmit, setRedirect }) => {
   };
 
   return (
-    <div className="container mb-5">
+    <div className="container search-bar mb-5">
       <div id="search-bar">
         <form onSubmit={handleSubmit}>
           <i className="fas fa-search fa-2x mr-2"></i>

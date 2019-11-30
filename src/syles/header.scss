@@ -1,4 +1,6 @@
 .header {
+  align-items: flex-end;
+  justify-content: space-between;
   li {
     list-style: none;
   }
@@ -11,11 +13,27 @@
 
     h1 {
       display: inline;
+      background: linear-gradient(
+        to left,
+        rgb(112, 101, 214),
+        rgb(230, 106, 213)
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
   }
 }
 
-.header {
-  align-items: flex-end;
-  justify-content: space-between;
+@media screen and (max-width: 767px) {
+  .header {
+    margin-bottom: none;
+    justify-content: center;
+    .links {
+      margin-top: 2em;
+      ul {
+        padding: 0;
+      }
+    }
+  }
 }
