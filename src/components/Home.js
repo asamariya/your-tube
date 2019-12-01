@@ -11,7 +11,6 @@ const Home = ({ videos, setFavouriteVideos, favouriteVideos }) => {
         setFavouriteVideos={setFavouriteVideos}
         favouriteVideos={favouriteVideos}
       />
-      {/* <div className="video-list mt-4">{listOfFavVideos}</div> */}
     </div>
   );
 };

@@ -30,7 +30,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    handleSubmit('dogs');
+    handleSubmit('a pigeon sat on a branch reflecting on existence');
   }, []);
 
   useEffect(() => {

@@ -12,7 +12,9 @@ const VideoList = ({
     // const favourites = JSON.parse(localStorage.getItem('favouriteVideos'));
     const favourites = ls.get('favouriteVideos');
     const isFavourite =
-      favourites && favourites.find(vid => vid.id.videoId === video.id.videoId);
+      favourites &&
+      favourites.find(favVid => favVid.id.videoId === video.id.videoId);
+    console.log('isFavourite', isFavourite);
 
     return (
       <VideoItem
