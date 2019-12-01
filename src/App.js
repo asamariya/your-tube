@@ -17,16 +17,20 @@ const App = () => {
 
   const handleSubmit = async searchTerm => {
     const API_KEY = process.env.REACT_APP_API_KEY;
-    const response = await youtube.get('search', {
-      params: {
-        part: 'snippet',
-        maxResults: 6,
-        key: API_KEY,
-        q: searchTerm,
-        type: 'video'
-      }
-    });
-    setVideos(response.data.items);
+    try {
+      const response = await youtube.get('search', {
+        params: {
+          part: 'snippet',
+          maxResults: 6,
+          key: API_KEY,
+          q: searchTerm,
+          type: 'video'
+        }
+      });
+      setVideos(response.data.items);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
