@@ -12,7 +12,7 @@ const App = () => {
     JSON.parse(localStorage.getItem('favouriteVideos')) || []
   );
 
-  const [, updateState] = React.useState();
+  const [, updateState] = useState();
   const forceUpdate = useCallback(() => updateState({}), []);
 
   const handleSubmit = async searchTerm => {
@@ -34,7 +34,6 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    // ls.set('favouriteVideos', favouriteVideos);
     localStorage.setItem('favouriteVideos', JSON.stringify(favouriteVideos));
     forceUpdate();
   }, [favouriteVideos, forceUpdate]);
@@ -44,8 +43,10 @@ const App = () => {
       <React.Fragment>
         {/* Header */}
         <Header />
+
         {/* Search bar */}
         <SearchBar onFormSubmit={handleSubmit} setRedirect={setRedirect} />
+
         {/* Home */}
         <Route
           exact
@@ -58,6 +59,7 @@ const App = () => {
             />
           )}
         />
+
         {/* Results */}
         {videos && redirect && <Redirect to="/results" />}
         <Route
@@ -71,6 +73,7 @@ const App = () => {
             />
           )}
         />
+
         {/* Favourite Videos */}
         <Route
           exact
