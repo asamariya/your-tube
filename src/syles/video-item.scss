@@ -5,6 +5,10 @@
   padding: 4px;
   box-shadow: 0 0 15px rgba(211, 211, 231, 0.295);
   width: 100%;
+  transition: transform 0.4s ease-in-out;
+  &:hover {
+    transform: scale(1.03);
+  }
 
   .video-img {
     min-height: 200px;
@@ -35,15 +39,10 @@
     }
     .add-fav {
       .favourite {
-        p {
+        .fav-text {
           opacity: 0;
           transition: opacity 0.5s ease-in-out;
         }
-        // &:hover {
-        //   p {
-        //     opacity: 1;
-        //   }
-        // }
       }
       .fav-icon {
         &:hover {
