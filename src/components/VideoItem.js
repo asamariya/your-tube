@@ -21,20 +21,20 @@ const VideoItem = ({
   };
 
   const showFavText = () => {
-    const videoCard = document.querySelector(`#${video.id.videoId}`);
+    const videoCard = document.querySelector(`#video-id${video.id.videoId}`);
     const favText = videoCard.querySelector('.fav-text');
     favText.style.opacity = '1';
   };
   const hideFavText = () => {
-    const videoCard = document.querySelector(`#${video.id.videoId}`);
+    const videoCard = document.querySelector(`#video-id${video.id.videoId}`);
     const favText = videoCard.querySelector('.fav-text');
     favText.style.opacity = '0';
   };
 
   return (
-    <div className="video-card d-flex mb-3" id={video.id.videoId}>
+    <div className="video-card d-flex mb-3" id={`video-id${video.id.videoId}`}>
       <div
-        className="video-img relative"
+        className="video-img d-flex justify-content-center align-items-center"
         style={{
           backgroundImage: `url(${video.snippet.thumbnails.high.url})`
         }}

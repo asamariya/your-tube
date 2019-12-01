@@ -16,9 +16,6 @@
     background-size: cover;
     transition: all 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
     .play-icon {
-      position: absolute;
-      top: 65px;
-      left: 135px;
       opacity: 0;
       transition: all 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
     }
@@ -62,12 +59,6 @@
       h5 {
         font-size: 1.25em;
       }
-      .video-img {
-        .play-icon {
-          top: 70px;
-          left: 150px;
-        }
-      }
     }
   }
 
@@ -76,11 +67,6 @@
     .video-card {
       max-width: 450px;
     }
-    .video-img {
-      .play-icon {
-        left: 200px;
-      }
-    }
   }
 }
 
@@ -88,11 +74,6 @@
 @media screen and (min-width: 1200px) {
   .video-card {
     max-width: 540px;
-    .video-img {
-      .play-icon {
-        left: 156px;
-      }
-    }
   }
 }
 

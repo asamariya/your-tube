@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-import ls from 'local-storage';
 
 import youtube from './api/youtube';
 import { SearchBar, Header, Results, Home } from './components';
 import FavouriteVideos from './components/FavouriteVideos';
 
 const App = () => {
-  // ls.clear();
   const [videos, setVideos] = useState([]);
   const [redirect, setRedirect] = useState(false);
   const [favouriteVideos, setFavouriteVideos] = useState(
-    ls.get('favouriteVideos') || []
+    JSON.parse(localStorage.getItem('favouriteVideos')) || []
   );
+
+  const [, updateState] = React.useState();
+  const forceUpdate = useCallback(() => updateState({}), []);
 
   const handleSubmit = async searchTerm => {
     const API_KEY = process.env.REACT_APP_API_KEY;
@@ -26,7 +27,6 @@ const App = () => {
       }
     });
     setVideos(response.data.items);
-    // console.log(response.data.items[0]);
   };
 
   useEffect(() => {
@@ -34,8 +34,10 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    ls.set('favouriteVideos', favouriteVideos);
-  }, [favouriteVideos]);
+    // ls.set('favouriteVideos', favouriteVideos);
+    localStorage.setItem('favouriteVideos', JSON.stringify(favouriteVideos));
+    forceUpdate();
+  }, [favouriteVideos, forceUpdate]);
 
   return (
     <Router>
