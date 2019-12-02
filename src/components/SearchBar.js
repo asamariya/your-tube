@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 const SearchBar = ({ onFormSubmit, setRedirect }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    onFormSubmit(searchTerm);
+    await onFormSubmit(searchTerm);
     setRedirect(true);
   };
 
