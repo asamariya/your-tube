@@ -1,12 +1,7 @@
 import React from 'react';
 
 import VideoItem from './VideoItem';
-const VideoList = ({
-  videos,
-
-  setFavouriteVideos,
-  favouriteVideos
-}) => {
+const VideoList = ({ videos, setFavouriteVideos, favouriteVideos }) => {
   const listOfVideos = videos.map((video, id) => {
     const favourites = JSON.parse(localStorage.getItem('favouriteVideos'));
     const isFavourite =

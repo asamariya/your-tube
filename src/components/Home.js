@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import VideoList from './VideoList';
-const Home = ({ videos, setFavouriteVideos, favouriteVideos }) => {
+const Home = ({
+  videos,
+  setFavouriteVideos,
+  favouriteVideos,
+  handleSubmit
+}) => {
+  useEffect(() => {
+    handleSubmit('a pigeon sat on a branch reflecting on existence');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div className="container videos">
       <span className="relative highlight highlight-pink">

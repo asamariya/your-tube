@@ -33,9 +33,9 @@ const App = () => {
     }
   };
 
-  useEffect(() => {
-    handleSubmit('a pigeon sat on a branch reflecting on existence');
-  }, []);
+  // useEffect(() => {
+  //   handleSubmit('a pigeon sat on a branch reflecting on existence');
+  // }, []);
 
   useEffect(() => {
     localStorage.setItem('favouriteVideos', JSON.stringify(favouriteVideos));
@@ -60,12 +60,13 @@ const App = () => {
               videos={videos}
               setFavouriteVideos={setFavouriteVideos}
               favouriteVideos={favouriteVideos}
+              handleSubmit={handleSubmit}
             />
           )}
         />
 
         {/* Results */}
-        {videos && redirect && <Redirect to="/results" />}
+        {redirect && <Redirect to="/results" />}
         <Route
           exact
           path="/results"
