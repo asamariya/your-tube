@@ -7,7 +7,7 @@ const Header = () => {
       <div className="logo">
         <a href="/">
           <span className="relative highlight highlight-aqua">
-            <h1 className="relative z-2">AugusTube</h1>
+            <h1 className="relative z-2">YourTube</h1>
           </span>
         </a>
       </div>
