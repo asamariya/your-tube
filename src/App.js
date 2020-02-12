@@ -1,9 +1,24 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import NProgress from 'nprogress';
 
 import youtube from './api/youtube';
 import { SearchBar, Header, Results, Home } from './components';
 import FavouriteVideos from './components/FavouriteVideos';
+
+const useComponentDidMount = func => useEffect(func, []);
+
+const useComponentWillMount = func => {
+  const willMount = useRef(true);
+
+  if (willMount.current) {
+    func();
+  }
+
+  useComponentDidMount(() => {
+    willMount.current = false;
+  });
+};
 
 const App = () => {
   const [videos, setVideos] = useState([]);
@@ -14,6 +29,15 @@ const App = () => {
 
   const [, updateState] = useState();
   const forceUpdate = useCallback(() => updateState({}), []);
+
+  useComponentWillMount(() =>
+    // console.log('Runs only once before component mounts')
+    NProgress.start()
+  );
+  useComponentDidMount(() =>
+    // console.log('Runs only once after component mounts')
+    NProgress.done()
+  );
 
   const handleSubmit = async searchTerm => {
     const API_KEY = process.env.REACT_APP_API_KEY;
@@ -32,10 +56,6 @@ const App = () => {
       console.log(error);
     }
   };
-
-  // useEffect(() => {
-  //   handleSubmit('a pigeon sat on a branch reflecting on existence');
-  // }, []);
 
   useEffect(() => {
     localStorage.setItem('favouriteVideos', JSON.stringify(favouriteVideos));
