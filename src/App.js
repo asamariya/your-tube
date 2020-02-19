@@ -30,14 +30,8 @@ const App = () => {
   const [, updateState] = useState();
   const forceUpdate = useCallback(() => updateState({}), []);
 
-  useComponentWillMount(() =>
-    // console.log('Runs only once before component mounts')
-    NProgress.start()
-  );
-  useComponentDidMount(() =>
-    // console.log('Runs only once after component mounts')
-    NProgress.done()
-  );
+  useComponentWillMount(() => NProgress.start());
+  useComponentDidMount(() => NProgress.done());
 
   const handleSubmit = async searchTerm => {
     const API_KEY = process.env.REACT_APP_API_KEY;
